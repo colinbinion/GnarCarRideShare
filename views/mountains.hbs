@@ -1,0 +1,58 @@
+{{> navbar}}
+
+<div class="pageHead">
+  <h2>Mountain Information</h2>
+</div>
+
+<div class="mountainInfo materialCard fluid-container col-lg-8 col-lg-offset-2">
+  <div class="row">
+    {{#each mountainInfo}}
+    <div class="col-lg-4">
+      <img src="{{image_url}}" class="mountainImage" alt="" />
+    </div>
+    <div class="col-lg-7 col-lg-offset-1">
+      <h1>{{name}}</h1>
+      <h6>
+        <a href="{{website}}">
+          View Ski Resort Website
+        </a>
+      </h6>
+      <h4>
+        {{description}}
+      </h4>
+      <h5>Summit Elevation: {{elevation}}</h5>
+      <h5>Runs: {{runs}}</h5>
+      <h5>
+        <a href="/rides/mountains/{{id}}">
+          View rides going to this mountain
+        </a>
+      </h5>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10">
+      <h3>Weather Conditions</h3>
+      {{#each conditions}}
+      <h5>Lower Snow Depth: {{lower_snow_depth}} ft.</h5>
+      <h5>Upper Snow Depth: {{upper_snow_depth}} ft.</h5>
+      <h4>Current Conditions: {{conditions}}</h4>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="row">
+    {{#each forecast}}
+    <div class="col-lg-2">
+      <h3>{{date}}</h3>
+      {{#each this.day}}
+        <h5>{{weather_text}}</h5>
+      {{/each}}
+      <img src="{{weatherIcon}}" alt="" />
+      <h6>Min: {{night_min_temp}} &#8457</h6>
+      <h6>Max: {{day_max_temp}} &#8457</h6>
+    </div>
+    {{/each}}
+  </div>
+</div>

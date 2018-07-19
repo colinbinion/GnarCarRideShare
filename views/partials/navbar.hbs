@@ -1,0 +1,40 @@
+<!-- Nav Bar -->
+<div class="padd-top-59"></div>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand Glogo" href="/"><img src="/images/gnarcar-logo.png" src="GnarCar" /></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        {{#unless loggedIn}}
+          <li><a href="/signup">Sign Up!</a></li>
+          <li><a href="/login">Log In</a></li>
+          <li><a href="/rides">Ride Updates</a></li>
+        {{/unless}}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {{#if loggedIn}}
+          <li>
+            <a href="/users/{{user.username}}" class="head-link-wrap">
+              <img class="head-user-img" src="{{user.image_url}}" />
+              {{user.username}}
+            </a>
+          </li>
+        {{/if}}
+        <li><a href="/rides">View Rides</a></li>
+        <li><a href="/rides/offer">Offer A Ride</a></li>
+        {{#if loggedIn}}
+          <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>

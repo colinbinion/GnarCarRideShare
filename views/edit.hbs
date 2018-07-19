@@ -1,0 +1,275 @@
+{{> navbar}}
+
+<div class="container profile-wrap well">
+  <!-- LEFT COLUMN -->
+  <div class="col-md-5 col-md-offset-1">
+    <h3>Update Profile</h3>
+    {{#if msg}}
+      {{#if msg.usersuccess}}
+      <ul class="success-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+      {{#if msg.usererror}}
+      <ul class="error-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+    {{/if}}
+    <form id="update-profile" action="/users/{{user.username}}/edit" method="post">
+      <input type="hidden" name="id" value="{{user.id}}" />
+      <input type="hidden" name="password" value="{{user.password}}" />
+      <div class="form-group username-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" value="{{user.username}}" name="username" placeholder="Enter username..." />
+      </div>
+      <div class="form-group">
+        <label for="image">Profile Pic:</label>
+        <input type="text" name="image" class="form-control" value="{{user.image_url}}" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" name="phone" value="{{user.phone}}" class="form-control" placeholder="303-222-1234" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{user.email}}" class="form-control" placeholder="me@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" class="form-control" value="{{user.address}}" name="address" placeholder="Enter address..." />
+      </div>
+        <div class="form-group">
+          <label for="username">City:</label>
+          <input type="text" class="form-control" value="{{user.city}}" name="city" placeholder="Enter city..." />
+        </div>
+        <div class="form-group">
+          <label for="username">State:</label>
+          <input type="text" class="form-control" value="{{user.state}}" name="state" placeholder="Enter state..." />
+        </div>
+        <div class="form-group">
+          <label for="username">Zipcode:</label>
+          <input type="text" class="form-control" value="{{user.zip}}" name="zipcode" placeholder="Enter zipcode..." />
+        </div>
+      <input type="submit" class="btn btn-default btn-block" name="update" value="Update" />
+    </form>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="col-md-5 col-md-offset-1">
+    <h3>Add a Car</h3>
+    {{#if msg}}
+      {{#if msg.carsuccess}}
+      <ul class="success-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+      {{#if msg.carerror}}
+      <ul class="error-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+    {{/if}}
+
+    {{#unless car}}
+      <form id="add-car" action="/cars/new" method="post">
+        <div class="form-group">
+         <label for="make" class="control-label">Car Make</label>
+         <input type="text" class="form-control" placeholder="Make" name="make" />
+        </div>
+
+        <div class="form-group">
+         <label for="model" class="control-label">Car Model</label>
+         <input type="text" class="form-control" placeholder="Model" name="model" />
+        </div>
+
+        <div class="form-group">
+          <label for="seats" class="radio-label"># of Seats</label>
+          <input type="number" name="seats" value="1" min="1" />
+        </div>
+
+        <div class="form-group">
+          <label for="skiracks" class="radio-label">Ski Racks</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="skiracks" value="0" class="radio-btn" checked />
+              <span class="radio-text">No</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="skiracks" value="1" class="radio-btn" />
+              <span class="radio-text">Yes</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dogs" class="radio-label">Dogs allowed?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="dogs" value="0" class="radio-btn" checked />
+              <span class="radio-text">No</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="dogs" value="1" class="radio-btn" />
+              <span class="radio-text">Yes</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+        <label for="drive" class="radio-label">Transmission</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="1" class="radio-btn" checked />
+              <span class="radio-text">AWD</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="2" class="radio-btn" />
+              <span class="radio-text">FWD</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="3" class="radio-btn" />
+              <span class="radio-text">RWD</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="4" class="radio-btn" />
+              <span class="radio-text">4WD</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="smoking" class="radio-label">Smoking</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="smoking" value="0" class="radio-btn" checked>
+              <span class="radio-text">No</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="smoking" value="1" class="radio-btn">
+              <span class="radio-text">Yes</span>
+            </label>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-default btn-block" name="submit" value="Add Car" />
+      </form>
+    {{/unless}}
+
+    {{#if car}}
+    <form id="add-car" action="/cars/update" method="post">
+      <input type="hidden" name="id" value="{{car.id}}" />
+      <div class="form-group">
+       <label for="make" class="control-label">Car Make</label>
+       <input type="text" class="form-control" value="{{car.make}}" placeholder="Make" name="make" />
+      </div>
+
+      <div class="form-group">
+       <label for="model" class="control-label">Car Model</label>
+       <input type="text" class="form-control" value="{{car.model}}" placeholder="Model" name="model" />
+      </div>
+
+      <div class="form-group">
+        <label for="seats" class="radio-label"># of Seats</label>
+        <input type="number" name="seats" value="{{car.max_seats}}" min="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="skiracks" class="radio-label">Ski Racks</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="skiracks" value="0" class="radio-btn" {{#unless car.ski_rack}}checked{{/unless}} />
+            <span class="radio-text">No</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="skiracks" value="1" class="radio-btn" {{#if car.ski_rack}}checked{{/if}} />
+            <span class="radio-text">Yes</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dogs" class="radio-label">Dogs allowed?</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="dogs" value="0" class="radio-btn" {{#unless car.dog}}checked{{/unless}} />
+            <span class="radio-text">No</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="dogs" value="1" class="radio-btn" {{#if car.dog}}checked{{/if}}/>
+            <span class="radio-text">Yes</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+      <label for="drive" class="radio-label">Transmission</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="drive" value="1" class="radio-btn" {{#if drives._awd}}checked{{/if}} />
+            <span class="radio-text">AWD</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="drive" value="2" class="radio-btn" {{#if drives._fwd}}checked{{/if}} />
+            <span class="radio-text">FWD</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="drive" value="3" class="radio-btn" {{#if drives._rwd}}checked{{/if}} />
+            <span class="radio-text">RWD</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="drive" value="4" class="radio-btn" {{#if drives._4wd}}checked{{/if}}/>
+            <span class="radio-text">4WD</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="smoking" class="radio-label">Smoking</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="smoking" value="0" class="radio-btn" {{#unless car.smoking}}checked{{/unless}}>
+            <span class="radio-text">No</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="smoking" value="1" class="radio-btn" {{#if car.smoking}}checked{{/if}}>
+            <span class="radio-text">Yes</span>
+          </label>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-default btn-block" name="submit" value="Update Car" />
+    </form>
+    {{/if}}
+  </div>
+</div>
